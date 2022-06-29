@@ -39,7 +39,10 @@
             <label for="description">Описание</label>
             <input type="text" class="form-control" id="description" name="description" placeholder="Введите описание" required/>
         </div>
-    
+        <div class="form-group" style="margin-bottom: 20px;">
+          <label for="favourites">Добавить в избранное?</label>
+          <input type="checkbox" value="1" id="favourites" name="favourites" placeholder="Да">
+      </div>
         <button type="submit" class="btn btn-success" >Отправить данные</button>
     </form>
   </main>
@@ -61,6 +64,7 @@
     let formData = new FormData();
     formData.append("name", e.target.name.value);
     formData.append("description", e.target.description.value);
+    formData.append("favourites", e.target.favourites.value);
 
     fetch('/create', {
       method: "POST",
