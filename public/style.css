@@ -27,3 +27,8 @@ input:valid {
 .poiskclass {
     background-color: aliceblue;
 }
+
+.delete {
+	background-color: #D92E3E;
+	border-color: #D92E3E;
+}
