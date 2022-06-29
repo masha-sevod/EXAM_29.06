@@ -1,0 +1,29 @@
+.navbar {
+    background-color: #c4a7e4;
+}
+
+body
+{
+    margin: 7%;
+}
+
+.header-poisk {
+    margin-left: -45%;
+}
+
+input:invalid {
+    border: 2px dashed red;
+  }
+  
+input:invalid:required {
+    background-color: #ffaba4;
+  }
+  
+input:valid {
+    border: 2px solid black;
+    background-color: #b9ee9b;
+  }
+
+.poiskclass {
+    background-color: aliceblue;
+}
