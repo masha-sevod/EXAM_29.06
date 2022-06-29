@@ -100,7 +100,7 @@ app.put("/edit/:id", fileFilter, (req, res) => {
 
   let answer = {
     status: "ok",
-    message: `Модель ${id} изменена`,
+    message: `Запись ${id} изменена`,
     data: model,
   };
 
@@ -123,7 +123,7 @@ app.delete("/delete/:id", (req, res) => {
 
   let answer = {
     status: "ok",
-    message: `Модель '${id}' удалена`
+    message: `Запись'${id}' удалена`
   }
   
   res.statusCode = 200;
