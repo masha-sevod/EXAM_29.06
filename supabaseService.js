@@ -1,9 +1,9 @@
 import supabase from "./dbConfig.js";
 
-const getModel = async id => {
+const getRecording = async id => {
     try {
         const {data, error} = await supabase
-            .from('models')
+            .from('recordings')
             .select()
             .match({id});
             
@@ -14,11 +14,11 @@ const getModel = async id => {
     }
 }
 
-const addModel = async model => {
+const addRecording = async recording => {
     try {
         const {data, error} = await supabase
-            .from('models')
-            .insert(model)
+            .from('recordings')
+            .insert(recording)
 
         if (error) throw error
         return data
@@ -29,12 +29,12 @@ const addModel = async model => {
     }
 }
 
-const editModel = async model => {
+const editRecording = async recording => {
     try {
         const {data, error} = await supabase
-            .from('models')
-            .update(model)
-            .match({id: model.id});
+            .from('recordings')
+            .update(recording)
+            .match({id: recording.id});
 
         if (error) throw error
         return data
@@ -43,10 +43,10 @@ const editModel = async model => {
     }
 }
 
-const deleteModel = async id => {
+const deleteRecording = async id => {
     try {
         const {data, error} = await supabase
-            .from('models')
+            .from('recordings')
             .delete()
             .match({id});
 
@@ -59,8 +59,8 @@ const deleteModel = async id => {
 
 
 export default {
-    getModel,
-    addModel,
-    editModel,
-    deleteModel
+    getRecording,
+    addRecording,
+    editRecording,
+    deleteRecording
 }
