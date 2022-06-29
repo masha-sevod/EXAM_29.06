@@ -6,7 +6,6 @@ const app = express();
 
 const PUBLIC_DIR = "public";
 app.use(express.static(PUBLIC_DIR));
-
 app.get("/:id", (req, res) => {
   let id = Number(req.params["id"]);
   
@@ -40,13 +39,13 @@ app.post("/create", fileFilter, async (req, res) => {
     return;
   }
 
-  let model = {
+  let recording = {
     name: req.body.name,
     description: req.body.description,
-    image: req.files[0].path
+    favourites: req.body.favourites
   };
 
-  let data = await supabaseService.addModel(model);
+  let data = await supabaseService.addRecording(recording);
 
   if (!data) {
     let error = {
@@ -90,18 +89,17 @@ app.put("/edit/:id", fileFilter, (req, res) => {
     return;
   }
 
-  let model = {
+  let recording = {
     id: req.params["id"],
     name: req.body.name,
     description: req.body.description,
-    image: req.files[0].path,
-    model: req.files[1].path,
+    favourites: req.body.favourites
   };
 
   let answer = {
     status: "ok",
     message: `Запись ${id} изменена`,
-    data: model,
+    data: recording,
   };
 
   res.statusCode = 200;
