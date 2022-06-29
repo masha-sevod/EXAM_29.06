@@ -11,7 +11,7 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="style.css">
-    <title>Создание модели</title>
+    <title>Экзамен</title>
   </head>
   <body style="margin: 10% 25% 10% 25%;">
     <header>
@@ -75,20 +75,23 @@
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
+		const data = {}
+		const name = document.querySelector('#name')
+		const description = document.querySelector('#description')
+		data.name = name.value
+		data.description = description.value
 
-    let formData = new FormData();
-    formData.append("name", e.target.name.value);
-    formData.append("description", e.target.description.value);
-    formData.append("favourites", e.target.favourites.value);
-
+		const headers={};
+		console.log(data)
+		body = JSON.stringify(data);
     fetch('/create', {
       method: "POST",
-      body: formData,
+      body: data,
     })
-      .then((r) => r.json())
-      .then((json) => {
-        console.table(json);
-      })
-      .catch((error) => alert(`Ошибка\n${error}`));
+      // .then((r) => r.json())
+      // .then((json) => {
+      //   console.table(json);
+      // })
+      // .catch((error) => alert(`Ошибка\n${error}`));
   });
 </script>
