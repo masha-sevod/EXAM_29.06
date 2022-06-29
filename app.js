@@ -1,11 +1,12 @@
 import express from "express";
 import fileFilter from "./fileFilter.js";
-import supabaseService from "./supabaseService.js";
+// import supabaseService from "./supabaseService.js";
 
 const app = express();
 
 const PUBLIC_DIR = "public";
 app.use(express.static(PUBLIC_DIR));
+app.use(express.json());
 app.get("/:id", (req, res) => {
   let id = Number(req.params["id"]);
   
@@ -28,42 +29,42 @@ app.get("/:id", (req, res) => {
   res.send(answer);
 })
 
-app.post("/create", fileFilter, async (req, res) => {
-  if (!req.body?.name || !req.files[0]?.path) {
-    let error = {
-      status: "error",
-      message: "Не хватает данных",
-    };
-    res.statusCode = 400;
-    res.send(error);
-    return;
-  }
+app.post("/create", async (req, res) => {
+	console.log(req.body)
+  // if (!req.body?.name || !req.files[0]?.path) {
+  //   let error = {
+  //     status: "error",
+  //     message: "Не хватает данных",
+  //   };
+    // res.statusCode = 400;
+    // res.send(error);
+    // return;
 
-  let recording = {
-    name: req.body.name,
-    description: req.body.description,
-    favourites: req.body.favourites
-  };
+  // let recording = {
+  //   name: req.body.name,
+  //   description: req.body.description,
+  //   favourites: req.body.favourites
+  // };
 
-  let data = await supabaseService.addRecording(recording);
+  // let data = await supabaseService.addRecording(recording);
 
-  if (!data) {
-    let error = {
-      status: "error",
-      message: "Ошибка при добавлении в базу данных",
-    };
-    res.statusCode = 400;
-    res.send(error);
-    return;
-  }
+  // if (!data) {
+  //   let error = {
+  //     status: "error",
+  //     message: "Ошибка при добавлении в базу данных",
+  //   };
+  //   res.statusCode = 400;
+  //   res.send(error);
+  //   return;
+  // }
 
-  let answer = {
-    status: "ok",
-    data
-  };
+  // let answer = {
+  //   status: "ok",
+  //   data
+  // };
 
-  res.statusCode = 200;
-  res.send(answer);
+  // res.statusCode = 200;
+  // res.send(req.body);
 });
 
 app.put("/edit/:id", fileFilter, (req, res) => {
